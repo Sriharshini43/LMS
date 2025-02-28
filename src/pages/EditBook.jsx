@@ -16,7 +16,7 @@ function EditBook() {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/books/${id}`);
+        const response = await axios.get(`https://lms-production-f51d.up.railway.app/api/books/${id}`);
         setBook(response.data);
       } catch (error) {
         console.error("Error fetching book:", error);
@@ -28,7 +28,7 @@ function EditBook() {
   // Handle form submission to update book details
   const handleEditSubmit = async () => {
     try {
-      await axios.put(`http://localhost:3000/api/books/${id}`, book);
+      await axios.put(`https://lms-production-f51d.up.railway.app/api/books/${id}`, book);
       navigate("/bookscrud");
     } catch (error) {
       console.error("Error editing book:", error);
