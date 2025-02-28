@@ -31,7 +31,7 @@ function UserHomeScreen() {
         return;
       }
 
-      const response = await axios.get("http://localhost:3000/api/auth/get-userDetails", {
+      const response = await axios.get("https://lms-production-f51d.up.railway.app/api/auth/get-userDetails", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -57,7 +57,7 @@ function UserHomeScreen() {
       setLoading(true);
       setError("");
 
-      const response = await axios.get(`http://localhost:3000/api/borrow/borrowed-books/${userData.id}`);
+      const response = await axios.get(`https://lms-production-f51d.up.railway.app/api/borrow/borrowed-books/${userData.id}`);
 
       if (response.data.success) {
         setBorrowedBooks(response.data.borrowedBooks);
@@ -80,7 +80,7 @@ function UserHomeScreen() {
         return;
       }
 
-      await axios.post("http://localhost:3000/api/borrow/return", { userId, bookId });
+      await axios.post("https://lms-production-f51d.up.railway.app/api/borrow/return", { userId, bookId });
       alert("Return request sent successfully!");
 
       fetchBorrowedBooks();
