@@ -78,13 +78,13 @@ function UserDetails() {
     setError("");
 
     try {
-      const response = await axios.get("http://localhost:3000/api/users/get-user");
+      const response = await axios.get("https://lms-production-f51d.up.railway.app/api/users/get-user");
       if (response.data) {
         const usersWithBorrowedBooks = await Promise.all(
           response.data.map(async (user) => {
             try {
               const borrowedBooksResponse = await axios.get(
-                `http://localhost:3000/api/borrow/borrowed-books/${user.id}`
+                `https://lms-production-f51d.up.railway.app/api/borrow/borrowed-books/${user.id}`
               );
               return {
                 ...user,
