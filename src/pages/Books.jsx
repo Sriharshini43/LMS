@@ -124,12 +124,12 @@ function Books() {
   // Fetch books and their borrow status
   const fetchBooks = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/books");
+      const response = await axios.get("https://lms-production-f51d.up.railway.app/api/books");
       let booksData = Array.isArray(response.data.books) ? response.data.books : [];
 
       const borrowStatusPromises = booksData.map(async (book) => {
         const borrowResponse = await axios.get(
-          `http://localhost:3000/api/borrow/status/${book.id}`
+          `https://lms-production-f51d.up.railway.app/api/borrow/status/${book.id}`
         );
         return {
           ...book,
@@ -153,7 +153,7 @@ function Books() {
 
     try {
       const borrowedResponse = await axios.get(
-        `http://localhost:3000/api/borrow/borrowed-books/${userId}`
+        `https://lms-production-f51d.up.railway.app/api/borrow/borrowed-books/${userId}`
       );
 
       const borrowedBooksCount = borrowedResponse.data.borrowedBooks.filter(
@@ -161,13 +161,13 @@ function Books() {
       ).length;
 
       const token = sessionStorage.getItem("authToken");
-      const response = await axios.get("http://localhost:3000/api/auth/get-userDetails", {
+      const response = await axios.get("https://lms-production-f51d.up.railway.app/api/auth/get-userDetails", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
       const userName = response.data.user.name;
 
-      const pendingResponse = await axios.get("http://localhost:3000/api/borrow/requests");
+      const pendingResponse = await axios.get("https://lms-production-f51d.up.railway.app/api/borrow/requests");
 
       const pendingBooksCount = pendingResponse.data.borrowRequests.filter(
         (request) => request.user_name === userName && request.status === "pending"
@@ -205,7 +205,7 @@ function Books() {
     );
 
     try {
-      const response = await axios.post("http://localhost:3000/api/borrow", {
+      const response = await axios.post("https://lms-production-f51d.up.railway.app/api/borrow", {
         userId,
         bookId: id,
       });
