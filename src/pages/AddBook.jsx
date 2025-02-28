@@ -15,7 +15,7 @@ function AddBook() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/api/books", book);
+      const response = await axios.post("https://lms-production-f51d.up.railway.app/api/books", book);
       if (response.data.success) {
         alert("Book added successfully");
         navigate("/bookscrud");
