@@ -28,11 +28,13 @@ const Header = () => {
     navigate('/');
   };
 
-  // Define admin routes
+  // Define admin and user routes
   const adminRoutes = ['/AdminScreen', '/bookscrud', '/addbook', '/editbook', '/users'];
-  
-  // Check if it's an admin subpage (excluding AdminHomeScreen)
+  const userRoutes = ['/books', '/settings']; // Removed '/homeScreen' from userRoutes
+
+  // Check if it's an admin or user subpage (excluding main home pages)
   const isAdminSubPage = adminRoutes.some(route => location.pathname.startsWith(route)) && location.pathname !== '/AdminScreen';
+  const isUserSubPage = userRoutes.some(route => location.pathname.startsWith(route)); // No need to exclude '/homeScreen'
 
   const goToAdminHome = () => {
     navigate('/AdminScreen');
@@ -44,7 +46,7 @@ const Header = () => {
         <span className="logo-text">LIBRARY-MANAGEMENT-SYSTEM</span>
       </div>
       <ul className="navbar-links">
-        {/* Show "Admin Home" button only on subpages, not on /AdminScreen */}
+        {/* Show "Admin Home" button only on admin subpages */}
         {isAdminSubPage && (
           <li>
             <button className="admin-home-btn" onClick={goToAdminHome}>
