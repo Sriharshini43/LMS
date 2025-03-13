@@ -8,9 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
-      getData();
-    }, 200);
+    getData();
   }, [location]);
 
   const getData = async () => {
