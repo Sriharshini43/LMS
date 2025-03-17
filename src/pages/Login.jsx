@@ -35,48 +35,30 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  const validationErrors = validateForm();
-  if (Object.keys(validationErrors).length > 0) {
-    setErrors(validationErrors);
-    return;
-  }
-
-  try {
-    const response = await axios.post("http://localhost:3000/api/auth/login", {
-      email,
-      password,
-      userType,
-    });
-
-    if (response.data.success) {
-      toast.success("Login successful!");
-      const userData = {
-        isLoggedIn: true,
-        userData: {
-          name: response.data.name,
-          email: response.data.email,
-          userType: response.data.userType,
-        },
-      };
-
-      sessionStorage.setItem("userData", JSON.stringify(userData));
-      sessionStorage.setItem("authToken", response.data.token);
-
-      // ✅ Notify Header to re-render
-      window.dispatchEvent(new Event("storageChange"));
-
-      navigate(response.data.userType === "admin" ? "/AdminScreen" : "/homeScreen");
-    } else {
-      toast.error(response.data.message || "Login failed");
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
     }
-  } catch (error) {
-    console.error("Login error:", error);
-    toast.error(error.response?.data?.message || "Something went wrong. Please try again.");
-  }
-};
+
+    try {
+      const response = await axios.post("http://localhost:3000/api/auth/login", { email, password, userType });
+
+      if (response.data.success) {
+        toast.success("Login successful!");
+        sessionStorage.setItem("authToken", response.data.token);
+        sessionStorage.setItem("userType", response.data.userType);
+        sessionStorage.setItem("userId", response.data.userId);
+
+        navigate(response.data.userType === "admin" ? "/AdminScreen" : "/homeScreen");
+      } else {
+        toast.error(response.data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error(error.response?.data?.message || "Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <div style={styles.background}>
