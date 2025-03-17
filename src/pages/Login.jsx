@@ -42,7 +42,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/api/auth/login", { email, password, userType });
+      const response = await axios.post("https://lms-production-f51d.up.railway.app/api/auth/login", { email, password, userType });
 
       if (response.data.success) {
         toast.success("Login successful!");
