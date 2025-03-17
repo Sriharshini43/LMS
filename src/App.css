@@ -95,9 +95,9 @@
 /* Admin Home & User Home Button Styles */
 .admin-home-btn,
 .user-home-btn {
-  background-color: #6c757d; /* Primary Blue */
-  color: white;
-  border: none;
+  background-color: #d6d6d6; /* Light Grey */
+  color: black; /* Black Text */
+  border: 1px solid #bfbfbf; /* Slight Border for Definition */
   padding: 10px 15px;
   font-size: 16px;
   border-radius: 5px;
@@ -109,14 +109,14 @@
 
 .admin-home-btn:hover,
 .user-home-btn:hover {
-  background-color: #6c757d; /* Darker Blue */
+  background-color: #c0c0c0; /* Slightly Darker Grey */
   transform: scale(1.05);
 }
 
 .admin-home-btn:active,
 .user-home-btn:active {
   transform: scale(0.95);
-  background-color: #004092;
+  background-color: #b0b0b0;
 }
 
 /* Login Container Styles */
