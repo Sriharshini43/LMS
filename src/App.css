@@ -92,6 +92,33 @@
   transition: background 0.3s ease; /* Smooth transition for background */
 }
 
+/* Admin Home & User Home Button Styles */
+.admin-home-btn,
+.user-home-btn {
+  background-color: #007bff; /* Primary Blue */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.admin-home-btn:hover,
+.user-home-btn:hover {
+  background-color: #0056b3; /* Darker Blue */
+  transform: scale(1.05);
+}
+
+.admin-home-btn:active,
+.user-home-btn:active {
+  transform: scale(0.95);
+  background-color: #004092;
+}
+
 /* Login Container Styles */
 .login-container {
   max-width: 400px;
