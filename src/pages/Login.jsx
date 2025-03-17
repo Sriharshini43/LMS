@@ -49,8 +49,6 @@ const Login = () => {
         sessionStorage.setItem("authToken", response.data.token);
         sessionStorage.setItem("userType", response.data.userType);
         sessionStorage.setItem("userId", response.data.userId);
-        sessionStorage.setItem("name", response.data.name);  // Store user name
-        sessionStorage.setItem("email", response.data.email); // Store user email
         sessionStorage.setItem("isLoggedIn", "true"); // Add isLoggedIn
 
         window.dispatchEvent(new Event("storageChange")); // Notify other components
