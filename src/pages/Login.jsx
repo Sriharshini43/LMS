@@ -151,7 +151,6 @@ const styles = {
   },
   formGroup: {
     marginBottom: "15px",
-    width: "100%",
   },
   label: {
     display: "block",
