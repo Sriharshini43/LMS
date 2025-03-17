@@ -9,14 +9,25 @@ const Header = () => {
 
   useEffect(() => {
     getData();
+
+    // Listen for custom storage change event
+    const handleStorageChange = () => {
+      getData();
+    };
+
+    window.addEventListener('storageChange', handleStorageChange);
+    return () => {
+      window.removeEventListener('storageChange', handleStorageChange);
+    };
   }, [location]);
 
   const getData = async () => {
     const data = await JSON.parse(sessionStorage.getItem('userData'));
-    console.log('useEffect run');
 
     if (data && data.isLoggedIn) {
       setUserData(data.userData);
+    } else {
+      setUserData(null);
     }
   };
 
@@ -24,15 +35,14 @@ const Header = () => {
     sessionStorage.clear();
     setUserData(null);
     navigate('/');
+    window.dispatchEvent(new Event('storageChange')); // Trigger update
   };
 
-  // Define admin and user routes
   const adminRoutes = ['/AdminScreen', '/bookscrud', '/addbook', '/editbook', '/users'];
-  const userRoutes = ['/books', '/settings']; // Removed '/homeScreen' from userRoutes
+  const userRoutes = ['/books', '/settings'];
 
-  // Check if it's an admin or user subpage (excluding main home pages)
   const isAdminSubPage = adminRoutes.some(route => location.pathname.startsWith(route)) && location.pathname !== '/AdminScreen';
-  const isUserSubPage = userRoutes.some(route => location.pathname.startsWith(route)); // No need to exclude '/homeScreen'
+  const isUserSubPage = userRoutes.some(route => location.pathname.startsWith(route));
 
   const goToAdminHome = () => {
     navigate('/AdminScreen');
@@ -44,7 +54,6 @@ const Header = () => {
         <span className="logo-text">LIBRARY-MANAGEMENT-SYSTEM</span>
       </div>
       <ul className="navbar-links">
-        {/* Show "Admin Home" button only on admin subpages */}
         {isAdminSubPage && (
           <li>
             <button className="admin-home-btn" onClick={goToAdminHome}>
@@ -53,49 +62,30 @@ const Header = () => {
           </li>
         )}
 
-        {/* Conditional Rendering based on user login status */}
         {userData ? (
           <>
             <li className="navbar-profile">
-              <Link
-                to="/homeScreen"
-                className={location.pathname === '/homeScreen' ? 'active' : ''}
-                style={{ display: 'flex' }}
-              >
+              <Link to="/homeScreen" className={location.pathname === '/homeScreen' ? 'active' : ''} style={{ display: 'flex' }}>
                 <span className="username">{userData.name}</span>
               </Link>
             </li>
             <li>
-              <i
-                className="fas fa-sign-out-alt logo-icon"
-                style={{ cursor: 'pointer' }}
-                onClick={logout}
-              ></i>
+              <i className="fas fa-sign-out-alt logo-icon" style={{ cursor: 'pointer' }} onClick={logout}></i>
             </li>
           </>
         ) : adminRoutes.some(route => location.pathname.startsWith(route)) ? (
           <li>
-            <i
-              className="fas fa-sign-out-alt logo-icon"
-              style={{ cursor: 'pointer' }}
-              onClick={logout}
-            ></i>
+            <i className="fas fa-sign-out-alt logo-icon" style={{ cursor: 'pointer' }} onClick={logout}></i>
           </li>
         ) : (
           <>
             <li>
-              <Link
-                to="/login"
-                className={location.pathname === '/login' ? 'active' : ''}
-              >
+              <Link to="/login" className={location.pathname === '/login' ? 'active' : ''}>
                 Login
               </Link>
             </li>
             <li>
-              <Link
-                to="/signup"
-                className={location.pathname === '/signup' ? 'active' : ''}
-              >
+              <Link to="/signup" className={location.pathname === '/signup' ? 'active' : ''}>
                 Sign Up
               </Link>
             </li>
