@@ -43,9 +43,10 @@ const Header = () => {
   const adminRoutes = ['/AdminScreen', '/bookscrud', '/addbook', '/editbook', '/users'];
   const userRoutes = ['/books', '/settings'];
 
-  // Check if it's an admin or user subpage (excluding main home pages)
-  const isAdminSubPage = adminRoutes.some(route => location.pathname.startsWith(route)) && location.pathname !== '/AdminScreen';
-  const isUserSubPage = userRoutes.some(route => location.pathname.startsWith(route));
+  // Check if it's an admin or user subpage
+  const isAdminSubPage = adminRoutes.includes(location.pathname) && !userRoutes.includes(location.pathname) && location.pathname !== "/AdminScreen";
+  const isUserSubPage = userRoutes.includes(location.pathname) && !adminRoutes.includes(location.pathname);
+
 
   const goToAdminHome = () => {
     navigate('/AdminScreen');
