@@ -95,7 +95,7 @@
 /* Admin Home & User Home Button Styles */
 .admin-home-btn,
 .user-home-btn {
-  background-color: #007bff; /* Primary Blue */
+  background-color: #6c757d; /* Primary Blue */
   color: white;
   border: none;
   padding: 10px 15px;
@@ -109,7 +109,7 @@
 
 .admin-home-btn:hover,
 .user-home-btn:hover {
-  background-color: #0056b3; /* Darker Blue */
+  background-color: #6c757d; /* Darker Blue */
   transform: scale(1.05);
 }
 
