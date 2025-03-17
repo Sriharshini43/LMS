@@ -21,11 +21,13 @@ const Header = () => {
   }, [location]);
 
   const getData = () => {
-    const data = await JSON.parse(sessionStorage.getItem('userData'));
+    const data = JSON.parse(sessionStorage.getItem("userData"));
     const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
 
     if (isLoggedIn && data) {
       setUserData(data.userData);
+    } else {
+      setUserData(null);
     }
   };
 
