@@ -4,8 +4,8 @@ import "../App.css";
 
 const Header = () => {
   const location = useLocation();
-  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     getData();
@@ -21,9 +21,15 @@ const Header = () => {
   }, [location]);
 
   const getData = () => {
-    const user = JSON.parse(sessionStorage.getItem("userData"));
+    const name = sessionStorage.getItem("name");
+    const email = sessionStorage.getItem("email");
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
 
-    setUserData(user?.isLoggedIn ? user.userData : null);
+    if (isLoggedIn && name && email) {
+      setUserData({ name, email });
+    } else {
+      setUserData(null);
+    }
   };
 
   const logout = () => {
