@@ -103,8 +103,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  text-transform: uppercase;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .admin-home-btn:hover,
