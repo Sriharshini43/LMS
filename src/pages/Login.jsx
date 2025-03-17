@@ -164,6 +164,7 @@ const styles = {
     borderRadius: "5px",
     border: "1px solid #ccc",
     fontSize: "16px",
+    boxSizing: "border-box",
   },
   passwordContainer: {
     display: "flex",
