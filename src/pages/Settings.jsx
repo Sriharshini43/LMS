@@ -21,7 +21,7 @@ function Settings() {
         return;
       }
 
-      const response = await axios.get("http://localhost:3000/api/auth/get-userDetails", {
+      const response = await axios.get("https://lms-production-5bae.up.railway.app/api/auth/get-userDetails", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -53,7 +53,7 @@ function Settings() {
     try {
       const token = sessionStorage.getItem("authToken");
       const response = await axios.put(
-        `http://localhost:3000/api/auth/update-user/${userData.id}`,
+        `https://lms-production-5bae.up.railway.app/api/auth/update-user/${userData.id}`,
         userData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -77,7 +77,7 @@ function Settings() {
       if (!confirmDelete) return;
 
       const token = sessionStorage.getItem("authToken");
-      await axios.delete(`http://localhost:3000/api/auth/delete-user/${userData.id}`, {
+      await axios.delete(`https://lms-production-5bae.up.railway.app/api/auth/delete-user/${userData.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
