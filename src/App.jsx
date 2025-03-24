@@ -55,24 +55,31 @@ const GlobalNavigationControl = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const disableNavigation = () => {
-      window.history.pushState(null, null, window.location.href);
+    const disableNavigation = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      window.history.pushState(null, "", window.location.href);
     };
 
-    window.history.pushState(null, null, window.location.href);
+    const disableBackButton = () => {
+      window.history.pushState(null, "", window.location.href);
+    };
+
+    // Initially push a state and override back/forward buttons
+    disableBackButton();
     window.addEventListener("popstate", disableNavigation);
 
     const handleKeyDown = (e) => {
       if (e.key === "F5" || (e.ctrlKey && e.key === "r")) {
         e.preventDefault();
-        alert("Refresh is disabled on this page.");
+        alert("Page refresh is disabled.");
       }
     };
     window.addEventListener("keydown", handleKeyDown);
 
     const handleBeforeUnload = (e) => {
       e.preventDefault();
-      e.returnValue = "You will be logged out. Are you sure you want to leave?";
+      e.returnValue = "";
       sessionStorage.removeItem("userSession");
       fetch("/api/logout", { method: "POST", credentials: "include" });
       navigate("/login");
