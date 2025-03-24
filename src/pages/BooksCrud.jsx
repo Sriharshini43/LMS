@@ -130,7 +130,7 @@ function BooksCrud() {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/books");
+      const response = await axios.get("https://lms-production-5bae.up.railway.app/api/books");
       const booksData = Array.isArray(response.data.books) ? response.data.books : [];
       setBooks(booksData);
     } catch (error) {
@@ -141,7 +141,7 @@ function BooksCrud() {
 
   const handleDeleteBook = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/books/${id}`);
+      await axios.delete(`https://lms-production-5bae.up.railway.app/api/books/${id}`);
       setBooks(books.filter((book) => book.id !== id));
       alert("Book deleted successfully!");
     } catch (error) {
