@@ -93,17 +93,18 @@
 }
 
 /* Admin Home & User Home Button Styles */
-.admin-home-btn{
-  background-color: #d6d6d6; /* Light Grey */
-  color: black; /* Black Text */
-  border: 1px solid #bfbfbf; /* Slight Border for Definition */
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  font-weight: normal;
-}
+ .admin-home-btn,
+ .user-home-btn {
+   background-color: #d6d6d6; /* Light Grey */
+   color: black; /* Black Text */
+   border: 1px solid #bfbfbf; /* Slight Border for Definition */
+   padding: 10px 15px;
+   font-size: 16px;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: all 0.3s ease-in-out;
+   font-weight: normal;
+ }
 
 .admin-home-btn:hover{
   background-color: #c0c0c0; /* Slightly Darker Grey */
