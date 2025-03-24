@@ -64,7 +64,7 @@ const SignUp = () => {
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/auth/register-user", // Adjust API endpoint
+          "https://lms-production-5bae.up.railway.app/api/auth/register-user", // Adjust API endpoint
           formValues
         );
 
