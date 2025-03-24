@@ -9,7 +9,7 @@ function AdminHomeScreen() {
   const [returnRequests, setReturnRequests] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/borrow/requests")
+    axios.get("https://lms-production-5bae.up.railway.app/api/borrow/requests")
       .then((response) => {
         const allRequests = response.data.borrowRequests;
         console.log("All Borrow Requests:", allRequests);
@@ -54,7 +54,7 @@ function AdminHomeScreen() {
 
   const handleApprove = (id, type) => {
     const endpoint = type === "borrow" ? `approve` : `return-approve`;
-    axios.put(`http://localhost:3000/api/borrow/${endpoint}/${id}`)
+    axios.put(`https://lms-production-5bae.up.railway.app/api/borrow/${endpoint}/${id}`)
       .then(() => {
         if (type === "borrow") {
           setBorrowRequests(prev => prev.map(req =>
