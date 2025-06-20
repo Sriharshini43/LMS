@@ -16,7 +16,7 @@ function EditBook() {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await axios.get(`${process.env.BACKEND_URL}/api/books/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/books/${id}`);
         setBook(response.data);
       } catch (error) {
         console.error("Error fetching book:", error);
@@ -27,7 +27,7 @@ function EditBook() {
 
   const handleEditSubmit = async () => {
     try {
-      await axios.put(`${process.env.BACKEND_URL}/api/books/${id}`, book);
+      await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/books/${id}`, book);
       navigate("/bookscrud");
     } catch (error) {
       console.error("Error editing book:", error);
