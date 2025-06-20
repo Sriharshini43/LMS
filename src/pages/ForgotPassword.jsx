@@ -30,7 +30,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await axios.post("${process.env.BACKEND_URL}/api/auth/forgot-password", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/forgot-password`, {
         email,
         newPassword,
         confirmPassword,
