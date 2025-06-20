@@ -16,7 +16,7 @@ function AddBook() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("${process.env.BACKEND_URL}/api/books", book);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/books`, book);
       if (response.data.success) {
         alert("Book added successfully");
         navigate("/bookscrud");
