@@ -9,7 +9,7 @@ function AdminHomeScreen() {
   const [returnRequests, setReturnRequests] = useState([]);
 
   useEffect(() => {
-    axios.get("${process.env.BACKEND_URL}/api/borrow/requests")
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/borrow/requests`)
       .then((response) => {
         const allRequests = response.data.borrowRequests;
         console.log("All Borrow Requests:", allRequests);
@@ -54,7 +54,7 @@ function AdminHomeScreen() {
 
   const handleApprove = (id, type) => {
     const endpoint = type === "borrow" ? `approve` : `return-approve`;
-    axios.put(`${process.env.BACKEND_URL}/api/borrow/${endpoint}/${id}`)
+    axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/borrow/${endpoint}/${id}`)
       .then(() => {
         if (type === "borrow") {
           setBorrowRequests(prev => prev.map(req =>
