@@ -30,7 +30,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await axios.post("https://lms-production-5bae.up.railway.app/api/auth/forgot-password", {
+      const response = await axios.post("${process.env.BACKEND_URL}/api/auth/forgot-password", {
         email,
         newPassword,
         confirmPassword,
