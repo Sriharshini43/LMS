@@ -128,11 +128,11 @@ function Books() {
   const fetchBooks = async () => {
     let userId = sessionStorage.getItem("userId");
     try {
-      const response = await axios.get("${process.env.BACKEND_URL}/api/books");
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/books`);
       let booksData = Array.isArray(response.data.books) ? response.data.books : [];
 
       const borrowStatusPromises = booksData.map(async (book) => {
-        const borrowResponse = await axios.get(`${process.env.BACKEND_URL}/api/borrow/status/${userId}/${book.id}`);
+        const borrowResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/borrow/status/${userId}/${book.id}`);
         return {
           ...book,
           isBorrowed: borrowResponse.data.isBorrowed,
@@ -155,19 +155,19 @@ function Books() {
     if (!userId) return;
 
     try {
-      const borrowedResponse = await axios.get(`${process.env.BACKEND_URL}/api/borrow/user/${userId}`);
+      const borrowedResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/borrow/user/${userId}`);
       const borrowedBooksCount = borrowedResponse.data.borrowedBooks.filter(
         (book) => book.status !== "returned" && book.return_date === null
       ).length;
 
       const token = sessionStorage.getItem("authToken");
-      const response = await axios.get("${process.env.BACKEND_URL}/api/auth/get-userDetails", {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/get-userDetails`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
       const userName = response.data.user.name;
 
-      const pendingResponse = await axios.get("${process.env.BACKEND_URL}/api/borrow/requests");
+      const pendingResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/borrow/requests`);
       const pendingBooksCount = pendingResponse.data.borrowRequests.filter(
         (request) => request.user_name === userName && request.status === "pending"
       ).length;
@@ -199,7 +199,7 @@ function Books() {
     );
 
     try {
-      const response = await axios.post("${process.env.BACKEND_URL}/api/borrow", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/borrow`, {
         userId,
         bookId: id,
       });
