@@ -64,7 +64,7 @@ const SignUp = () => {
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post(
-          "${process.env.BACKEND_URL}/api/auth/register-user", // Adjust API endpoint
+          `${import.meta.env.VITE_BACKEND_URL}/api/auth/register-user`, // Adjust API endpoint
           formValues
         );
 
