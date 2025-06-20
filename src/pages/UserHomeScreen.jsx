@@ -31,7 +31,7 @@ function UserHomeScreen() {
         return;
       }
 
-      const response = await axios.get("${process.env.BACKEND_URL}/api/auth/get-userDetails", {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/get-userDetails`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -58,7 +58,7 @@ function UserHomeScreen() {
       setError("");
 
       let userId = sessionStorage.getItem("userId");
-      const response = await axios.get(`${process.env.BACKEND_URL}/api/borrow/user/${userId}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/borrow/user/${userId}`);
 
       if (response.data.success) {
         setBorrowedBooks(response.data.borrowedBooks);
@@ -81,7 +81,7 @@ function UserHomeScreen() {
         return;
       }
 
-      await axios.post("${process.env.BACKEND_URL}/api/borrow/return", { userId, bookId });
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/borrow/return`, { userId, bookId });
       alert("Return request sent successfully!");
 
       fetchBorrowedBooks();
