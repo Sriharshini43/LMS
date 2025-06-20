@@ -78,13 +78,13 @@ function UserDetails() {
     setError("");
 
     try {
-      const response = await axios.get("https://lms-production-5bae.up.railway.app/api/users/get-user");
+      const response = await axios.get("${process.env.BACKEND_URL}/api/users/get-user");
       if (response.data) {
         const usersWithBorrowedBooks = await Promise.all(
           response.data.map(async (user) => {
             try {
               const borrowedBooksResponse = await axios.get(
-                `https://lms-production-5bae.up.railway.app/api/borrow/user/${user.id}`
+                `${process.env.BACKEND_URL}/api/borrow/user/${user.id}`
               );
               return {
                 ...user,
