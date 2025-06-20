@@ -16,7 +16,7 @@ function AddBook() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://lms-w6u8.onrender.com/api/books", book);
+      const response = await axios.post("${process.env.BACKEND_URL}/api/books", book);
       if (response.data.success) {
         alert("Book added successfully");
         navigate("/bookscrud");
