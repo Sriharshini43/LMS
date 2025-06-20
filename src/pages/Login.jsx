@@ -42,7 +42,7 @@ import React, { useState, useEffect } from "react";
      }
  
      try {
-       const response = await axios.post("https://lms-production-5bae.up.railway.app/api/auth/login", { email, password, userType });
+       const response = await axios.post("${process.env.BACKEND_URL}/api/auth/login", { email, password, userType });
  
        if (response.data.success) {
          toast.success("Login successful!");
