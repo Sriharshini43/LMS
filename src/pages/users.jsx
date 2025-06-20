@@ -78,13 +78,13 @@ function UserDetails() {
     setError("");
 
     try {
-      const response = await axios.get("${process.env.BACKEND_URL}/api/users/get-user");
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/get-user`);
       if (response.data) {
         const usersWithBorrowedBooks = await Promise.all(
           response.data.map(async (user) => {
             try {
               const borrowedBooksResponse = await axios.get(
-                `${process.env.BACKEND_URL}/api/borrow/user/${user.id}`
+                `${import.meta.env.VITE_BACKEND_URL}/api/borrow/user/${user.id}`
               );
               return {
                 ...user,
