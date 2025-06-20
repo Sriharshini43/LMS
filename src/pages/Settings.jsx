@@ -21,7 +21,7 @@ function Settings() {
         return;
       }
 
-      const response = await axios.get("${process.env.BACKEND_URL}/api/auth/get-userDetails", {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/get-userDetails`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -53,7 +53,7 @@ function Settings() {
     try {
       const token = sessionStorage.getItem("authToken");
       const response = await axios.put(
-        `${process.env.BACKEND_URL}/api/auth/update-user/${userData.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/update-user/${userData.id}`,
         userData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -77,7 +77,7 @@ function Settings() {
       if (!confirmDelete) return;
 
       const token = sessionStorage.getItem("authToken");
-      await axios.delete(`${process.env.BACKEND_URL}/api/auth/delete-user/${userData.id}`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/auth/delete-user/${userData.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
