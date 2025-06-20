@@ -9,7 +9,7 @@ function AdminHomeScreen() {
   const [returnRequests, setReturnRequests] = useState([]);
 
   useEffect(() => {
-    axios.get("https://lms-w6u8.onrender.com/api/borrow/requests")
+    axios.get("${process.env.BACKEND_URL}/api/borrow/requests")
       .then((response) => {
         const allRequests = response.data.borrowRequests;
         console.log("All Borrow Requests:", allRequests);
@@ -54,7 +54,7 @@ function AdminHomeScreen() {
 
   const handleApprove = (id, type) => {
     const endpoint = type === "borrow" ? `approve` : `return-approve`;
-    axios.put(`https://lms-w6u8.onrender.com/api/borrow/${endpoint}/${id}`)
+    axios.put(`${process.env.BACKEND_URL}/api/borrow/${endpoint}/${id}`)
       .then(() => {
         if (type === "borrow") {
           setBorrowRequests(prev => prev.map(req =>
